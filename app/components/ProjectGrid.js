@@ -13,7 +13,7 @@ export default function ProjectGrid({ initialProjects }) {
     setHasScrolled(newScrollState);
   };
 
-  // Always include info section with projects
+  // Restore original InfoSection handling
   const baseProjects = [
     ...initialProjects,
     {
@@ -24,47 +24,9 @@ export default function ProjectGrid({ initialProjects }) {
 
   const projects = Array(20).fill(baseProjects).flat();
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = container;
-      const sectionHeight = scrollHeight / 5;
-
-      if (!hasScrolled && scrollTop > 10) {
-        setHasScrolled(true);
-      }
-
-      // When near bottom, jump back to middle without user noticing
-      if (scrollTop + clientHeight >= scrollHeight - (clientHeight / 2)) {
-        container.style.scrollBehavior = 'auto';
-        container.scrollTop = sectionHeight * 2;
-        requestAnimationFrame(() => {
-          container.style.scrollBehavior = 'smooth';
-        });
-      }
-      // When near top, jump forward to middle without user noticing
-      else if (scrollTop <= clientHeight / 2) {
-        container.style.scrollBehavior = 'auto';
-        container.scrollTop = sectionHeight * 2;
-        requestAnimationFrame(() => {
-          container.style.scrollBehavior = 'smooth';
-        });
-      }
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [hasScrolled]);
-
   return (
     <div className="min-h-screen">
-      <Header
-        hasScrolled={hasScrolled}
-        onScroll={handleScroll}
-        scrollContainerRef={scrollContainerRef}
-      />
+      <Header hasScrolled={hasScrolled} onScroll={handleScroll} scrollContainerRef={scrollContainerRef} />
       <div
         ref={scrollContainerRef}
         className="h-screen overflow-y-auto scroll-container"
@@ -76,44 +38,31 @@ export default function ProjectGrid({ initialProjects }) {
           transition: 'padding-top 0.3s'
         }}
       >
-        <style jsx global>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
         <div className="px-8 md:px-12 lg:px-16">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-32 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
             {projects.map((project, index) => {
               if (project.fields?.isInfoSection) {
                 console.log('Rendering info section at index:', index);
-                return <InfoSection key={`info-${index}`} />;
+                return (
+                  <div key={`info-${index}`} className="col-span-2 info-section">
+                    <InfoSection />
+                  </div>
+                );
               }
 
               return (
-                <div
-                  key={`${project.sys.id}-${index}`}
-                  className="project-item relative"
-                  style={{
-                    width: 'fit-content',
-                    maxWidth: '100%',
-                    zIndex: 'auto'
-                  }}
-                >
+                <div key={`${project.sys.id}-${index}`} className="project-item relative flex justify-center w-full">
                   {project.fields.featuredImage && (
                     <div className="flex flex-col items-center w-full">
-                      <div style={{ width: project.fields.scale ? `${project.fields.scale * 100}%` : '100%' }}>
-                        <Link href={`/projects/${project.fields.slug}`}>
-                          <div className="relative flex justify-center">
+                      <div className="w-4/5">
+                        <Link href={`/projects/${project.fields.slug}`} className="flex justify-center">
+                          <div className="relative">
                             <Image
                               src={project.fields.featuredImage.fields.file.url}
                               alt={project.fields.title}
                               width={project.fields.featuredImage.fields.file.details.image.width}
                               height={project.fields.featuredImage.fields.file.details.image.height}
                               className="w-auto h-auto"
-                              priority={index < 4}
-                              loading={index < 4 ? "eager" : "lazy"}
-                              quality={85}
-                              unoptimized={false}
                             />
                           </div>
                         </Link>
