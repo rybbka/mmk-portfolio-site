@@ -2,7 +2,14 @@ import { getClient } from '@/lib/contentful';
 import ProjectGrid from './components/ProjectGrid';
 
 async function getProjects() {
+  console.log('Starting getProjects');
   const client = getClient();
+  console.log('Client created:', !!client);
+  console.log('Client config:', {
+    space: process.env.CONTENTFUL_SPACE_ID,
+    hasToken: !!process.env.CONTENTFUL_ACCESS_TOKEN
+  });
+
   const response = await client.getEntries({
     content_type: 'project',
     include: 2,
