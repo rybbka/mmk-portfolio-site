@@ -4,6 +4,7 @@ const config = {
     domains: ['images.ctfassets.net'],
     formats: ['image/avif', 'image/webp'],
   },
+  output: 'standalone',
 };
 
 export default config;
