@@ -1,8 +1,8 @@
-import { getClient } from '@/lib/contentful';
+import { getContentful } from '@/lib/contentful';
 import ProjectView from './ProjectView';
 
 async function getProject(slug) {
-  const client = getClient();
+  const client = await getContentful();
   const response = await client.getEntries({
     content_type: 'project',
     'fields.slug': slug,
