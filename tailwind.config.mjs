@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "./app/**/*.{js,jsx,ts,tsx,css}",
-    "./app/components/**/*.{js,jsx,ts,tsx,css}",
-    "./app/globals.css",
-    "./app/styles/**/*.css"
+    './app/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/components/*.{js,ts,jsx,tsx,mdx}',
+    './app/components/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   safelist: [
     // Add any classes that might be dynamically generated
