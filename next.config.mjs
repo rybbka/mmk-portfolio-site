@@ -5,10 +5,6 @@ const config = {
     formats: ['image/avif', 'image/webp'],
   },
   output: 'standalone',
-  // Force production mode for CSS optimization
-  env: {
-    NODE_ENV: 'production',
-  },
 };
 
 export default config;
