@@ -1,5 +1,6 @@
 import { getContentful } from '@/lib/contentful';
 import ProjectView from './ProjectView';
+import Header from '../../Components/Header'
 
 async function getProject(slug) {
   const client = await getContentful();

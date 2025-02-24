@@ -3,7 +3,7 @@ export default {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/styles/**/*.css",
-    "./app/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/Components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
     // Add any classes that might be dynamically generated
