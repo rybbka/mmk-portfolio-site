@@ -1,4 +1,4 @@
-import './styles/globals.scss'
+import './styles/globals.css'
 import "./styles/fonts.css";
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased font-['Suisse_Intl_Mono'] font-bold bg-white">
+      <body className="antialiased font-sans font-bold bg-white">
         {children}
       </body>
     </html>
