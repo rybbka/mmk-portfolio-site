@@ -1,10 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-const config = {
+export default {
   content: [
-    './app/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/components/*.{js,ts,jsx,tsx,mdx}',
-    './app/components/**/*.{js,ts,jsx,tsx,mdx}'
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
     // Add any classes that might be dynamically generated
@@ -22,12 +21,10 @@ const config = {
         bold: 700,
       },
       screens: {
-        'custom': '1050px',
+        'custom': '768px',
         'mobile': '736px',
       },
     },
   },
   plugins: [],
-};
-
-export default config;
+}
