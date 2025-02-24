@@ -1,5 +1,5 @@
 import { getContentful } from '@/lib/contentful';
-import ProjectGrid from './components/ProjectGrid';
+import ProjectGrid from './Components/ProjectGrid';
 
 async function getProjects() {
   const client = await getContentful();

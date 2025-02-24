@@ -2,8 +2,8 @@
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from './Header';
-import InfoSection from './InfoSection';
+import Header from './Header.js';
+import InfoSection from './InfoSection.js';
 
 export default function ProjectGrid({ initialProjects }) {
   const scrollContainerRef = useRef(null);
