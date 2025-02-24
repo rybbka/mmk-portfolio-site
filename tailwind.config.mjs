@@ -4,6 +4,8 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/styles/**/*.css",
     "./app/Components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
     // Add any classes that might be dynamically generated
